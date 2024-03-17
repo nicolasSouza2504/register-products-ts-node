@@ -1,15 +1,16 @@
-import express, {Router} from 'express';
+import express, {Express, NextFunction, Request, Response, Router} from 'express';
+import bodyParser from 'body-parser';
 import MainRoutes from "./routes/mainRoutes.js";
 
 class App {
 
-    server: express.Express;
+    private server: Express;
 
-    constructor() {
+    public constructor() {
 
         this.server = express();
 
-        this.server.use((req, res, next) => {
+        this.server.use((req: Request, res: Response, next: NextFunction) => {
 
             res.setHeader('Access-Control-Allow-Origin', '*');
             res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
@@ -24,11 +25,12 @@ class App {
 
     }
 
-    middlewares() {
+    private middlewares(): void {
         this.server.use(express.json());
+        this.server.use(bodyParser.json());
     }
 
-    routes() {
+    private routes(): void {
 
         MainRoutes.forEach((route: Router) => {
             this.server.use(route);
@@ -36,6 +38,10 @@ class App {
 
     }
 
+    getServer(): Express {
+        return this.server;
+    }
+
 }
 
-export default new App().server
+export default new App().getServer()

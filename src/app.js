@@ -1,4 +1,5 @@
 import express from 'express';
+import bodyParser from 'body-parser';
 import MainRoutes from "./routes/mainRoutes.js";
 class App {
     server;
@@ -14,11 +15,15 @@ class App {
     }
     middlewares() {
         this.server.use(express.json());
+        this.server.use(bodyParser.json());
     }
     routes() {
         MainRoutes.forEach((route) => {
             this.server.use(route);
         });
     }
+    getServer() {
+        return this.server;
+    }
 }
-export default new App().server;
+export default new App().getServer();
