@@ -4,7 +4,7 @@ const routes = express.Router();
 routes.post("/save", (req, res) => {
     res.setHeader('Content-Type', 'application/json');
     Product.create(req.body).then(prod => {
-        return res.status(200).json({ message: 'Product has been saved' });
+        return res.status(200).json(prod);
     }).catch(error => {
         return res.status(500).json(error);
     });
