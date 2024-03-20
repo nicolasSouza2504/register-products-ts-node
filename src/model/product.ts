@@ -1,4 +1,4 @@
-import {DataTypes} from 'sequelize';
+import { Model, DataTypes } from 'sequelize';
 
 import sequelize from "../db/sequelize.js";
 import CategoryEnum from "../enums/category-enum.js";

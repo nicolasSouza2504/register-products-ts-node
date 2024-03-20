@@ -21,4 +21,15 @@ routes.put("/edit", (req, res) => {
     res.setHeader('Content-Type', 'application/json');
     // return productController.updateProduct(req.body, req.query, res)
 });
+routes.put("/delete", (req, res) => {
+    res.setHeader('Content-Type', 'application/json');
+    // return productController.updateProduct(req.body, req.query, res)
+});
+routes.get("/find-by-id", async (req, res) => {
+    res.setHeader('Content-Type', 'application/json');
+    const product = await Product.findByPk(req.body.id).then((product) => {
+        return product;
+    });
+    return res.status(200).json(product);
+});
 export default routes;

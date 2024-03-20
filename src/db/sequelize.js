@@ -3,7 +3,7 @@ const sequelize = new Sequelize({
     database: 'products',
     username: 'postgres',
     host: 'localhost',
-    dialect: 'postgres',
+    dialect: 'postgres'
 });
 sequelize.sync({ force: true })
     .then(() => {

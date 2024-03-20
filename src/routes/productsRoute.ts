@@ -1,12 +1,13 @@
 import express, {Request, Response, Router} from "express";
 import Product from '../model/product.js';
+import {Model} from "sequelize";
 
 const routes: Router = express.Router();
 
 routes.post("/save", (req: Request, res: Response) => {
 
 
-    res.setHeader('Content-Type', 'application/json');z
+    res.setHeader('Content-Type', 'application/json');
 
     Product.create(req.body).then(prod => {
         return res.status(200).json(prod);
@@ -33,6 +34,27 @@ routes.put("/edit", (req: Request, res: Response) => {
     res.setHeader('Content-Type', 'application/json');
 
     // return productController.updateProduct(req.body, req.query, res)
+
+});
+
+routes.put("/delete", (req: Request, res: Response) => {
+
+    res.setHeader('Content-Type', 'application/json');
+
+    // return productController.updateProduct(req.body, req.query, res)
+
+});
+
+
+routes.get("/find-by-id", async (req: Request, res: Response) => {
+
+    res.setHeader('Content-Type', 'application/json');
+
+    const product: Model<any, any> | null = await Product.findByPk(req.body.id).then((product: Model<any, any> | null) => {
+        return product;
+    });
+
+    return res.status(200).json(product);
 
 });
 
