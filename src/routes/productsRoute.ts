@@ -1,6 +1,7 @@
 import express, {Request, Response, Router} from "express";
 import Product from '../model/product.js';
 import {Model} from "sequelize";
+import ProductController from "../controller/product.controller.js";
 
 const routes: Router = express.Router();
 
@@ -33,15 +34,15 @@ routes.put("/edit", (req: Request, res: Response) => {
 
     res.setHeader('Content-Type', 'application/json');
 
-    // return productController.updateProduct(req.body, req.query, res)
+    return ProductController.updateProduct(req.body, req.query, res)
 
 });
 
-routes.put("/delete", (req: Request, res: Response) => {
+routes.delete("/delete", (req: Request, res: Response) => {
 
     res.setHeader('Content-Type', 'application/json');
 
-    // return productController.updateProduct(req.body, req.query, res)
+    return ProductController.deleteProduct(req.query, res)
 
 });
 

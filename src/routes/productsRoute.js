@@ -1,5 +1,6 @@
 import express from "express";
 import Product from '../model/product.js';
+import ProductController from "../controller/product.controller.js";
 const routes = express.Router();
 routes.post("/save", (req, res) => {
     res.setHeader('Content-Type', 'application/json');
@@ -19,11 +20,11 @@ routes.get("/list-all", async (req, res) => {
 });
 routes.put("/edit", (req, res) => {
     res.setHeader('Content-Type', 'application/json');
-    // return productController.updateProduct(req.body, req.query, res)
+    return ProductController.updateProduct(req.body, req.query, res);
 });
-routes.put("/delete", (req, res) => {
+routes.delete("/delete", (req, res) => {
     res.setHeader('Content-Type', 'application/json');
-    // return productController.updateProduct(req.body, req.query, res)
+    return ProductController.deleteProduct(req.query, res);
 });
 routes.get("/find-by-id", async (req, res) => {
     res.setHeader('Content-Type', 'application/json');

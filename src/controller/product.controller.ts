@@ -2,6 +2,7 @@ import Product from '../model/product.js';
 import {Response} from "express";
 import ProductDto from "../dto/productDto";
 import {Model} from "sequelize";
+import product from "../model/product.js";
 
 class ProductController {
 
@@ -9,19 +10,42 @@ class ProductController {
 
         this.validateProduct(objEditor);
 
-        const productSaved: Model<any, any> | null = await Product.findByPk(queryParams.id).then((product: Model<any, any> | null) => {
-            return productSaved
-        });
+        const productSaved = await Product.findByPk(queryParams.id);
 
         if (productSaved == null) {
             return res.status(404).json({message: 'Product not found!'});
         } else {
 
+            this.updateValues(productSaved, objEditor);
+
+            return await productSaved.save().then((prod: Model<any, any>) => {
+                return res.status(200).json(prod);
+            }).catch((error: Error) => {
+                return res.status(500).json({message: 'Error updating product: ' + error.message});
+            });
+
         }
 
-        this.updateValues(productSaved, objEditor);
 
     };
+
+    async deleteProduct(queryParams: any, res: Response) {
+
+        const productSaved = await Product.findByPk(queryParams.id);
+
+        if (productSaved == null) {
+            return res.status(404).json({message: 'Product not found!'});
+        } else {
+
+            await productSaved.destroy().then((prod: Model<any, any> | void) => {
+                return res.status(200).json({message: 'Product has been deleted!'});
+            }).catch((error: Error) => {
+                return res.status(500).json({message: 'Error deleting product: ' + error.message});
+            });
+
+        }
+
+    }
 
     validateProduct(obj: ProductDto): void {
 
@@ -47,12 +71,14 @@ class ProductController {
 
     };
 
-    updateValues(prod: Model<any, any>, objEditor: ProductDto): void {
-        prod.dataValues.brand = objEditor.brand;
-        prod.dataValues.model = objEditor.model;
-        prod.dataValues.capacity = objEditor.capacity;
-        prod.dataValues.price = objEditor.price;
-        prod.dataValues.category = objEditor.category;
+    updateValues(prod: Model<any, any> | any, objEditor: ProductDto): void {
+        prod.brand = objEditor.brand;
+        prod.model = objEditor.model;
+        prod.capacity = objEditor.capacity;
+        prod.price = objEditor.price;
+        prod.category = objEditor.category;
     }
 
 }
+
+export default new ProductController();

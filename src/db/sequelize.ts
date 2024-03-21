@@ -8,7 +8,7 @@ const sequelize = new Sequelize({
     dialect: 'postgres'
 });
 
-sequelize.sync({force: true})
+sequelize.sync({force: false})
     .then(() => {
         console.log('Tables created successfully');
     })
