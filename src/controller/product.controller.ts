@@ -6,11 +6,11 @@ import product from "../model/product.js";
 
 class ProductController {
 
-    async updateProduct(objEditor: ProductDto, queryParams: any, res: Response) {
+    async updateProduct(objEditor: ProductDto,  res: Response) {
 
         this.validateProduct(objEditor);
 
-        const productSaved = await Product.findByPk(queryParams.id);
+        const productSaved = await Product.findByPk(objEditor.id);
 
         if (productSaved == null) {
             return res.status(404).json({message: 'Product not found!'});

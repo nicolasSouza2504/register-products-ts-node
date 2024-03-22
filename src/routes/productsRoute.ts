@@ -34,7 +34,7 @@ routes.put("/edit", (req: Request, res: Response) => {
 
     res.setHeader('Content-Type', 'application/json');
 
-    return ProductController.updateProduct(req.body, req.query, res)
+    return ProductController.updateProduct(req.body, res)
 
 });
 

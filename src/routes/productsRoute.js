@@ -20,7 +20,7 @@ routes.get("/list-all", async (req, res) => {
 });
 routes.put("/edit", (req, res) => {
     res.setHeader('Content-Type', 'application/json');
-    return ProductController.updateProduct(req.body, req.query, res);
+    return ProductController.updateProduct(req.body, res);
 });
 routes.delete("/delete", (req, res) => {
     res.setHeader('Content-Type', 'application/json');
