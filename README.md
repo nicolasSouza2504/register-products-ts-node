@@ -1,14 +1,10 @@
-Claro! Aqui está um modelo completo de `README.md` para seu projeto **Sistema de Controle de Estoque em Node.js com TypeScript, JWT, Sequelize e PostgreSQL**:
-
----
-
-## 📦 Sistema de Controle de Estoque
+# 📦 Sistema de Controle de Estoque
 
 Sistema completo de controle de estoque com autenticação via JWT, gestão de produtos, usuários, categorias e marcas. Desenvolvido em **Node.js + TypeScript** com banco de dados **PostgreSQL**.
 
 ---
 
-### 🧱 Estrutura do Projeto
+## 🧱 Estrutura do Projeto
 
 ```
 register-products-ts-node/
@@ -31,20 +27,20 @@ register-products-ts-node/
 
 ---
 
-### 🛠 Tecnologias Utilizadas
+## 🛠 Tecnologias Utilizadas
 
-* **Node.js** com **Express**
-* **TypeScript**
-* **Sequelize** com **sequelize-typescript**
-* **PostgreSQL**
-* **JWT** (JSON Web Token)
-* **Jest** para testes
-* **Docker** (opcional)
-* **ESModules** (type: "module")
+- **Node.js** com **Express**
+- **TypeScript**
+- **Sequelize** com **sequelize-typescript**
+- **PostgreSQL**
+- **JWT** (JSON Web Token)
+- **Jest** para testes
+- **Docker** (opcional)
+- **ESModules** (type: "module")
 
 ---
 
-### 🧪 Executando o Projeto
+## 🧪 Executando o Projeto
 
 1. **Instale as dependências**
 
@@ -84,27 +80,27 @@ npm test
 
 ---
 
-### 🔐 Autenticação JWT
+## 🔐 Autenticação JWT
 
-* Rota de login: `POST /auth/login`
-* Rota de registro: `POST /auth/register`
-* Token deve ser enviado no header `Authorization: Bearer <token>`
-* Middleware `verifyToken` garante acesso por `role`
-
----
-
-### 📘 Endpoints Principais
-
-| Método | Rota           | Descrição          | Protegido? |
-| ------ | -------------- | ------------------ | ---------- |
-| POST   | /auth/register | Criação de usuário | ❌          |
-| POST   | /auth/login    | Autenticação e JWT | ❌          |
-| PUT    | /product       | Atualiza produto   | ✅ admin    |
-| DELETE | /product       | Remove produto     | ✅ admin    |
+- Rota de login: `POST /auth/login`
+- Rota de registro: `POST /auth/register`
+- Token deve ser enviado no header `Authorization: Bearer <token>`
+- Middleware `verifyToken` garante acesso por `role`
 
 ---
 
-### 🔄 Fluxo de Processos
+## 📘 Endpoints Principais
+
+| Método | Rota               | Descrição                      | Protegido? |
+|--------|--------------------|-------------------------------|------------|
+| POST   | /auth/register     | Criação de usuário            | ❌         |
+| POST   | /auth/login        | Autenticação e JWT            | ❌         |
+| PUT    | /product           | Atualiza produto              | ✅ admin   |
+| DELETE | /product           | Remove produto                | ✅ admin   |
+
+---
+
+## 🔄 Fluxo de Processos
 
 1. Usuário realiza **registro**
 2. Realiza **login** e recebe token JWT
@@ -114,9 +110,9 @@ npm test
 
 ---
 
-### 📐 Diagrama de Classes
+## 📐 Diagrama de Classes
 
-```plaintext
+```
 +------------------+
 |      User        |
 +------------------+
@@ -150,24 +146,19 @@ npm test
 
 ---
 
-### 🧪 Testes Automatizados
+## 🧪 Testes Automatizados
 
-* Local: `src/controller/*.spec.ts`
-* Rodados com Jest
-* Cobrem:
-
-    * Login inválido/válido
-    * Registro duplicado
-    * Atualização e exclusão de produto
-
----
-
-### 📋 Observações
-
-* Projeto utiliza ESModules — não use `require`
-* JWT é assinado com segredo definido via `.env`
-* Sequelize com `sequelize-typescript` e decorators
+- Local: `src/controller/*.spec.ts`
+- Rodados com Jest
+- Cobrem:
+    - Login inválido/válido
+    - Registro duplicado
+    - Atualização e exclusão de produto
 
 ---
 
-Se quiser, posso gerar o `README.md` real dentro do seu projeto com base neste conteúdo. Deseja isso?
+## 📋 Observações
+
+- Projeto utiliza ESModules — não use `require`
+- JWT é assinado com segredo definido via `.env`
+- Sequelize com `sequelize-typescript` e decorators
