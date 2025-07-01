@@ -33,21 +33,21 @@ class User extends Model<UserAttributes, UserCreationAttributes> {
 
     @AllowNull(false)
     @Column(DataType.STRING)
-    name!: string;
+    declare name: string;
 
     @AllowNull(false)
     @Unique
     @Column(DataType.STRING)
-    email!: string;
+    declare email: string;
 
     @AllowNull(false)
     @Column(DataType.STRING)
-    password!: string;
+    declare password: string;
 
     @AllowNull(false)
     @Default('user')
     @Column(DataType.ENUM('admin', 'user'))
-    role!: 'admin' | 'user';
+    declare role: 'admin' | 'user';
 }
 
 export default User;

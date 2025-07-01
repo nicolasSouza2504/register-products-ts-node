@@ -2,10 +2,11 @@ import express, {Request, Response, Router} from "express";
 import Product from '../model/product.js';
 import {Model} from "sequelize";
 import ProductController from "../controller/product.controller.js";
+import {verifyToken} from "../controller/auth.controller.js";
 
 const routes: Router = express.Router();
 
-routes.post("/save", (req: Request, res: Response) => {
+routes.post("/save", verifyToken(['user']), (req: Request, res: Response) => {
 
 
     res.setHeader('Content-Type', 'application/json');
@@ -18,7 +19,7 @@ routes.post("/save", (req: Request, res: Response) => {
 
 });
 
-routes.get("/list-all", async (req: Request, res: Response) => {
+routes.get("/list-all", verifyToken(['user']), (req: Request, res: Response) => {
 
     res.setHeader('Content-Type', 'application/json');
 
@@ -30,7 +31,7 @@ routes.get("/list-all", async (req: Request, res: Response) => {
 
 });
 
-routes.put("/edit", (req: Request, res: Response) => {
+routes.put("/edit", verifyToken(['user']), (req: Request, res: Response) => {
 
     res.setHeader('Content-Type', 'application/json');
 
@@ -38,7 +39,7 @@ routes.put("/edit", (req: Request, res: Response) => {
 
 });
 
-routes.delete("/delete", (req: Request, res: Response) => {
+routes.delete("/delete", verifyToken(['user']), (req: Request, res: Response) => {
 
     res.setHeader('Content-Type', 'application/json');
 
@@ -47,7 +48,7 @@ routes.delete("/delete", (req: Request, res: Response) => {
 });
 
 
-routes.get("/find-by-id", async (req: Request, res: Response) => {
+routes.get("/find-by-id", verifyToken(['user']), async (req: Request, res: Response) => {
 
     res.setHeader('Content-Type', 'application/json');
 

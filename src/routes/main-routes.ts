@@ -1,6 +1,7 @@
 import {Router} from "express";
 import PingRoute from './ping-route.js';
 import ProductsRoute from "./product-route.js";
+import LoginRoute from "./login-route.js";
 
 class MainRoutes {
 
@@ -12,6 +13,7 @@ class MainRoutes {
 
         this.routes.push(PingRoute);
         this.routes.push(ProductsRoute);
+        this.routes.push(LoginRoute);
 
     }
 
