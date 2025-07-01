@@ -1,6 +1,6 @@
 import {Router} from "express";
-import PingRoute from './pingRoute.js';
-import ProductsRoute from "./productsRoute.js";
+import PingRoute from './ping-route.js';
+import ProductsRoute from "./product-route.js";
 
 class MainRoutes {
 

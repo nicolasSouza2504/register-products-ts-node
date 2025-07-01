@@ -1,8 +1,7 @@
 import Product from '../model/product.js';
 import {Response} from "express";
-import ProductDto from "../dto/productDto";
+import ProductDto from "../dto/product-dto.js";
 import {Model} from "sequelize";
-import product from "../model/product.js";
 
 class ProductController {
 

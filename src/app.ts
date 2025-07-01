@@ -1,6 +1,6 @@
 import express, {Express, NextFunction, Request, Response, Router} from 'express';
 import bodyParser from 'body-parser';
-import MainRoutes from "./routes/mainRoutes.js";
+import MainRoutes from "./routes/main-routes.js";
 
 class App {
 

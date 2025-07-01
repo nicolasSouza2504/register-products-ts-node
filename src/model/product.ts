@@ -1,40 +1,65 @@
-import { Model, DataTypes } from 'sequelize';
+import {
+    Table,
+    Column,
+    Model,
+    DataType,
+    PrimaryKey,
+    AutoIncrement,
+    AllowNull,
+    ForeignKey,
+    BelongsTo
+} from 'sequelize-typescript';
+import CategoryEnum from '../enums/category-enum.js';
+import Brand from './brand.js';
 
-import sequelize from "../db/sequelize.js";
-import CategoryEnum from "../enums/category-enum.js";
-import BrandEntity from "./brand.js";
+interface ProductAttributes {
+    id: number;
+    brand: string;
+    model: string;
+    capacity: number;
+    price: number;
+    category: string;
+    brandId: number;
+}
 
-const Product = sequelize.define('product', {
-            id: {
-                type: DataTypes.INTEGER,
-                primaryKey: true,
-                autoIncrement: true
-            },
-            brand: {
-                type: DataTypes.STRING
-            },
-            model: {
-                type: DataTypes.STRING
+interface ProductCreationAttributes extends Omit<ProductAttributes, 'id'> {}
 
-            },
-            capacity: {
-                type: DataTypes.DOUBLE
-            },
-            price: {
-                type: DataTypes.DOUBLE
-            },
-            category: {
-                type: DataTypes.ENUM(...Object.values(CategoryEnum))
-            },
-            brandId: {
-                type: DataTypes.INTEGER
-            }
-        },
-        {
-            tableName: 'product'
-        }
-    );
+@Table({
+    tableName: 'product',
+    timestamps: false
+})
+class Product extends Model<ProductAttributes, ProductCreationAttributes> {
+    @PrimaryKey
+    @AutoIncrement
+    @Column(DataType.INTEGER)
+    declare id: number;
 
-Product.belongsTo(BrandEntity, {foreignKey: 'brandId', targetKey: 'id'});
+    @AllowNull(false)
+    @Column(DataType.STRING)
+    declare brand: string;
+
+    @AllowNull(false)
+    @Column(DataType.STRING)
+    declare model: string;
+
+    @AllowNull(false)
+    @Column(DataType.DOUBLE)
+    declare capacity: number;
+
+    @AllowNull(false)
+    @Column(DataType.DOUBLE)
+    declare price: number;
+
+    @AllowNull(false)
+    @Column(DataType.ENUM(...Object.values(CategoryEnum)))
+    declare category: string;
+
+    @ForeignKey(() => Brand)
+    @Column(DataType.INTEGER)
+    declare brandId: number;
+
+    @BelongsTo(() => Brand)
+    declare brandDetails?: Brand;
+}
 
 export default Product;
