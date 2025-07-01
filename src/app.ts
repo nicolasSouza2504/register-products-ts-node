@@ -2,6 +2,7 @@ import express, {Express, NextFunction, Request, Response, Router} from 'express
 import bodyParser from 'body-parser';
 import MainRoutes from "./routes/main-routes.js";
 import dotenv from 'dotenv';
+import './db/sequelize.js';
 
 class App {
 
@@ -21,11 +22,11 @@ class App {
 
         });
 
+        dotenv.config();
+
         this.middlewares();
 
         this.routes();
-
-        dotenv.config();
 
     }
 

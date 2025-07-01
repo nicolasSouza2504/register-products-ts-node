@@ -1,7 +1,6 @@
 import {Sequelize} from 'sequelize-typescript';
-import Product from "../model/product";
-import User from "../model/user";
-import Brand from "../model/brand";
+import Product from "../model/product.js";
+import User from "../model/user.js";
 
 const sequelize = new Sequelize({
     database: 'products',
@@ -10,7 +9,7 @@ const sequelize = new Sequelize({
     dialect: 'postgres'
 });
 
-sequelize.addModels([User, Product, Brand]);
+sequelize.addModels([User, Product]);
 
 sequelize.sync({force: true})
     .then(() => {

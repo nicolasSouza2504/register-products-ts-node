@@ -6,11 +6,8 @@ import {
     PrimaryKey,
     AutoIncrement,
     AllowNull,
-    ForeignKey,
-    BelongsTo
 } from 'sequelize-typescript';
 import CategoryEnum from '../enums/category-enum.js';
-import Brand from './brand.js';
 
 interface ProductAttributes {
     id: number;
@@ -19,7 +16,6 @@ interface ProductAttributes {
     capacity: number;
     price: number;
     category: string;
-    brandId: number;
 }
 
 interface ProductCreationAttributes extends Omit<ProductAttributes, 'id'> {}
@@ -51,15 +47,9 @@ class Product extends Model<ProductAttributes, ProductCreationAttributes> {
     declare price: number;
 
     @AllowNull(false)
-    @Column(DataType.ENUM(...Object.values(CategoryEnum)))
+    @Column(DataType.STRING)
     declare category: string;
 
-    @ForeignKey(() => Brand)
-    @Column(DataType.INTEGER)
-    declare brandId: number;
-
-    @BelongsTo(() => Brand)
-    declare brandDetails?: Brand;
-}
+ }
 
 export default Product;
