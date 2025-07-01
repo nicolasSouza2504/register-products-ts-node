@@ -1,11 +1,10 @@
 import {Sequelize} from 'sequelize-typescript';
-import Product from '../model/product.js';
 
 const sequelize = new Sequelize({
     database: 'products',
     username: 'postgres',
     host: 'localhost',
-    dialect: 'postgres'
+    dialect: 'postgres',
 });
 
 sequelize.sync({force: false})

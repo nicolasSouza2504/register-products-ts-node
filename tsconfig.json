@@ -5,6 +5,12 @@
     "esModuleInterop": true,
     "moduleResolution": "node",
     "strict": true,
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "baseUrl": "./src",
+    "paths": {
+      "*": ["*"]
+    }
   }
 }
